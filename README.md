@@ -28,24 +28,24 @@ This project fine-tunes the LLaMA 2 (7B) model using LoRA (Low-Rank Adaptation) 
 ### ⚙️ Setup & Usage
 
   1. Clone the Repository
-      ```
-      git clone https://github.com/ssundaresh/llama-finetuning.git
-      cd llama-finetuning
+      ``` 
+      git clone https://github.com/ssundaresh/fcp-llama7b-finetuned.git
+      cd finetunedmodel
   2. Fine-tune the Model
-     If using 4 GPUs. Adjust according to your environment.
-     ```
-       torchrun --nproc_per_node=4 finetunedmodel/llama7b-ghibli-finetuned.py
 
-  3. Start the API Server
-     On port 8000
+   Adjust nproc_per_node according to your environment.
+   
+      torchrun --nproc_per_node=4 finetunedmodel/llama7b-ghibli-finetuned.py
+
+  4. Start the API Server
      ```
-       uvicorn app:app --host 0.0.0.0 --port 8000 --reload
-  4. Open the port
+       uvicorn app:app --host 0.0.0.0 --port <PORT_NUMBER>
+  5. Open the port
      ```
-       sudo foundrypf 8000
-  5. Generate text via the API
+       sudo foundrypf <PORT_NUMBER>
+  6. Generate text via the API
      ```
-         curl -X POST "http://localhost:8000/generate" -H "Content-Type: application/json" \
+         curl -X POST "http://<HOST>:<PORT_NUMBER>/generate" -H "Content-Type: application/json" \
          -d '{"prompt": "Hello AI", "max_length": 50, "num_return_sequences": 1}'
 
 
